@@ -1,0 +1,12 @@
+{
+    "name": "robot-test-dashboard",
+    "description": "Dashboard to show live status of robot-test, e.g. for hw qualification",
+    "version": "0.0.1",
+    "dependencies": {},
+    "node-red": {
+        "settings": {
+            "flowFile": "flow.json",
+            "credentialsFile": "flow_cred.json"
+        }
+    }
+}
