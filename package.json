@@ -2,7 +2,10 @@
     "name": "robot-test-dashboard",
     "description": "Dashboard to show live status of robot-test, e.g. for hw qualification",
     "version": "0.0.1",
-    "dependencies": {},
+    "dependencies": {
+        "node-red-dashboard": "2.30.0",
+        "node-red-node-ui-table": "0.3.11"
+    },
     "node-red": {
         "settings": {
             "flowFile": "flow.json",
