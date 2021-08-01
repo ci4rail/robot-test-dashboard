@@ -7,13 +7,6 @@
         "info": ""
     },
     {
-        "id": "10282734.9554d9",
-        "type": "tab",
-        "label": "Flow 2",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "d46629e6.7ab2c8",
         "type": "ui_group",
         "name": "Default",
@@ -26,18 +19,20 @@
         "id": "4364768f.a40d38",
         "type": "ui_base",
         "theme": {
-            "name": "theme-light",
+            "name": "theme-dark",
             "lightTheme": {
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
+                "edited": true,
+                "reset": false
             },
             "darkTheme": {
                 "default": "#097479",
-                "baseColor": "#097479",
+                "baseColor": "#ff6116",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
+                "edited": true,
+                "reset": false
             },
             "customTheme": {
                 "name": "Untitled Theme 1",
@@ -47,16 +42,16 @@
             },
             "themeState": {
                 "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
-                    "edited": false
+                    "default": "#097479",
+                    "value": "#ff6116",
+                    "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
+                    "value": "#ff6116",
                     "edited": false
                 },
                 "page-backgroundColor": {
-                    "value": "#fafafa",
+                    "value": "#111111",
                     "edited": false
                 },
                 "page-sidebar-backgroundColor": {
@@ -64,27 +59,27 @@
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#1bbfff",
+                    "value": "#ff9562",
                     "edited": false
                 },
                 "group-borderColor": {
-                    "value": "#ffffff",
+                    "value": "#555555",
                     "edited": false
                 },
                 "group-backgroundColor": {
-                    "value": "#ffffff",
+                    "value": "#333333",
                     "edited": false
                 },
                 "widget-textColor": {
-                    "value": "#111111",
+                    "value": "#eeeeee",
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#0094ce",
+                    "value": "#ff6116",
                     "edited": false
                 },
                 "widget-borderColor": {
-                    "value": "#ffffff",
+                    "value": "#333333",
                     "edited": false
                 },
                 "base-font": {
@@ -105,7 +100,7 @@
             "allowSwipe": "false",
             "lockMenu": "false",
             "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
+            "dateFormat": "YYYY-MM-DD",
             "sizes": {
                 "sx": 48,
                 "sy": 48,
@@ -121,7 +116,7 @@
     {
         "id": "6c6174cc.b60f34",
         "type": "ui_tab",
-        "name": "Tab 1",
+        "name": "Robot Test Control",
         "icon": "dashboard",
         "order": 1,
         "disabled": false,
@@ -130,18 +125,18 @@
     {
         "id": "74c69428.3abbdc",
         "type": "ui_group",
-        "name": "Default",
+        "name": "Test-Status",
         "tab": "6c6174cc.b60f34",
         "order": 1,
         "disp": true,
-        "width": "6",
+        "width": "20",
         "collapse": false
     },
     {
         "id": "237da972.5d69a6",
         "type": "ui_group",
         "name": "ui-table with commands",
-        "tab": "379a501f.53b59",
+        "tab": "",
         "order": 1,
         "disp": true,
         "width": "17",
@@ -151,75 +146,41 @@
         "id": "c91332c0.50c11",
         "type": "ui_group",
         "name": "commands",
-        "tab": "379a501f.53b59",
+        "tab": "",
         "order": 2,
         "disp": true,
         "width": "6",
         "collapse": false
     },
     {
-        "id": "379a501f.53b59",
-        "type": "ui_tab",
-        "name": "ui-table command",
-        "icon": "fa-table",
-        "disabled": false,
-        "hidden": false
-    },
-    {
         "id": "625872f.40b1e8c",
         "type": "ui_group",
         "name": "Default",
-        "tab": "58c2aa06.ef46e4",
+        "tab": "",
         "order": 1,
         "disp": true,
         "width": "6",
         "collapse": false
     },
     {
-        "id": "58c2aa06.ef46e4",
-        "type": "ui_tab",
-        "name": "Home",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
-    },
-    {
         "id": "ff9fdb9a.7da098",
         "type": "ui_group",
         "name": "TEST",
-        "tab": "7dcc246f.ee661c",
+        "tab": "",
         "order": 1,
         "disp": false,
         "width": "8",
         "collapse": false
     },
     {
-        "id": "7dcc246f.ee661c",
-        "type": "ui_tab",
-        "name": "TEST",
-        "icon": "dashboard",
-        "order": 12,
-        "disabled": false,
-        "hidden": false
-    },
-    {
         "id": "51ce6aa1.620754",
         "type": "ui_group",
         "name": "ui_control",
-        "tab": "3b08fac0.8f06b6",
+        "tab": "",
         "order": 1,
         "disp": true,
         "width": "22",
         "collapse": false
-    },
-    {
-        "id": "3b08fac0.8f06b6",
-        "type": "ui_tab",
-        "name": "Home",
-        "icon": "track_changes",
-        "order": 1,
-        "disabled": false,
-        "hidden": false
     },
     {
         "id": "b019dbf8.677588",
@@ -247,13 +208,29 @@
         "sessionExpiry": ""
     },
     {
+        "id": "2dee2e04.7cf00a",
+        "type": "ui_group",
+        "name": "Test Messages",
+        "tab": "721af69.d130208",
+        "order": 1,
+        "disp": true,
+        "width": "9",
+        "collapse": false
+    },
+    {
+        "id": "721af69.d130208",
+        "type": "ui_tab",
+        "name": "Demo",
+        "icon": "dashboard"
+    },
+    {
         "id": "4d8aa5d0.aa01ec",
         "type": "ui_table",
         "z": "4c878ae1.32bae4",
         "group": "74c69428.3abbdc",
         "name": "result_table",
         "order": 0,
-        "width": "6",
+        "width": "20",
         "height": "20",
         "columns": [
             {
@@ -275,6 +252,26 @@
                 "formatterParams": {
                     "target": "_blank"
                 }
+            },
+            {
+                "field": "last_error_ts",
+                "title": "Last Error At",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "last_error",
+                "title": "Last Error",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
             }
         ],
         "outputs": 1,
@@ -283,7 +280,8 @@
         "y": 380,
         "wires": [
             [
-                "49406610.c28f38"
+                "49406610.c28f38",
+                "1e4eb64c.dc32aa"
             ]
         ]
     },
@@ -298,8 +296,8 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 500,
-        "y": 380,
+        "x": 490,
+        "y": 440,
         "wires": [
             [
                 "6debd184.61566"
@@ -337,71 +335,24 @@
         "y": 380,
         "wires": [
             [
-                "4d8aa5d0.aa01ec",
-                "c6c1224.08af36"
+                "4d8aa5d0.aa01ec"
             ]
         ]
-    },
-    {
-        "id": "47927cf2.99654c",
-        "type": "inject",
-        "z": "4c878ae1.32bae4",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{\"name\":\"Test2\",\"errors\":\"0\"}",
-        "payloadType": "json",
-        "x": 490,
-        "y": 440,
-        "wires": [
-            [
-                "6debd184.61566"
-            ]
-        ]
-    },
-    {
-        "id": "c6c1224.08af36",
-        "type": "debug",
-        "z": "4c878ae1.32bae4",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 840,
-        "y": 340,
-        "wires": []
     },
     {
         "id": "121b6e37.e949da",
         "type": "mqtt in",
         "z": "4c878ae1.32bae4",
         "name": "",
-        "topic": "robot-test/+",
+        "topic": "robot-test/results/+",
         "qos": "2",
         "datatype": "json",
         "broker": "b019dbf8.677588",
         "nl": false,
         "rap": true,
         "rh": 0,
-        "x": 250,
-        "y": 260,
+        "x": 230,
+        "y": 380,
         "wires": [
             [
                 "5b891010.33e528"
@@ -418,7 +369,7 @@
                 "t": "set",
                 "p": "payload.name",
                 "pt": "msg",
-                "to": "$split(topic,\"/\")[1]",
+                "to": "$split(topic,\"/\")[2]",
                 "tot": "jsonata"
             }
         ],
@@ -427,17 +378,128 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 440,
-        "y": 260,
+        "x": 460,
+        "y": 380,
         "wires": [
             [
-                "f3b5f0c7.a77ba",
                 "6debd184.61566"
             ]
         ]
     },
     {
-        "id": "f3b5f0c7.a77ba",
+        "id": "828796a6.5e221",
+        "type": "ui_button",
+        "z": "4c878ae1.32bae4",
+        "name": "Clear Errors",
+        "group": "74c69428.3abbdc",
+        "order": 1,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Clear Errors",
+        "tooltip": "Clear all error counters",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "topic": "robot-test/clear_error_counters",
+        "topicType": "str",
+        "x": 900,
+        "y": 120,
+        "wires": [
+            [
+                "ca54a754.c8c998",
+                "6b6ee69b.4fa018"
+            ]
+        ]
+    },
+    {
+        "id": "ca54a754.c8c998",
+        "type": "mqtt out",
+        "z": "4c878ae1.32bae4",
+        "name": "",
+        "topic": "",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b019dbf8.677588",
+        "x": 1050,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "1e4eb64c.dc32aa",
+        "type": "change",
+        "z": "4c878ae1.32bae4",
+        "name": "get last_error",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.last_error",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1010,
+        "y": 440,
+        "wires": [
+            [
+                "f430eb76.6304c"
+            ]
+        ]
+    },
+    {
+        "id": "c7850b38.fbfac8",
+        "type": "ui_template",
+        "z": "4c878ae1.32bae4",
+        "group": "74c69428.3abbdc",
+        "name": "Error Details",
+        "order": 2,
+        "width": "17",
+        "height": "2",
+        "format": "<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1350,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f430eb76.6304c",
+        "type": "function",
+        "z": "4c878ae1.32bae4",
+        "name": "",
+        "func": "str = msg.payload\n\nmsg.payload = str.replace(/(?:\\r\\n|\\r|\\n)/g, '<br>');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1180,
+        "y": 440,
+        "wires": [
+            [
+                "c7850b38.fbfac8"
+            ]
+        ]
+    },
+    {
+        "id": "6b6ee69b.4fa018",
         "type": "debug",
         "z": "4c878ae1.32bae4",
         "name": "",
@@ -448,8 +510,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 880,
-        "y": 260,
+        "x": 1100,
+        "y": 80,
         "wires": []
     }
 ]
