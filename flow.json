@@ -7,13 +7,29 @@
         "info": ""
     },
     {
-        "id": "d46629e6.7ab2c8",
-        "type": "ui_group",
-        "name": "Default",
-        "tab": "",
-        "disp": true,
-        "width": "6",
-        "collapse": false
+        "id": "b019dbf8.677588",
+        "type": "mqtt-broker",
+        "name": "MQTT",
+        "broker": "mosquitto",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "5",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
     },
     {
         "id": "4364768f.a40d38",
@@ -123,6 +139,21 @@
         "hidden": false
     },
     {
+        "id": "721af69.d130208",
+        "type": "ui_tab",
+        "name": "Demo",
+        "icon": "dashboard"
+    },
+    {
+        "id": "d46629e6.7ab2c8",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
         "id": "74c69428.3abbdc",
         "type": "ui_group",
         "name": "Test-Status",
@@ -183,31 +214,6 @@
         "collapse": false
     },
     {
-        "id": "b019dbf8.677588",
-        "type": "mqtt-broker",
-        "name": "MQTT",
-        "broker": "mosquitto",
-        "port": "1883",
-        "clientid": "",
-        "usetls": false,
-        "protocolVersion": "5",
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "willMsg": {},
-        "sessionExpiry": ""
-    },
-    {
         "id": "2dee2e04.7cf00a",
         "type": "ui_group",
         "name": "Test Messages",
@@ -216,74 +222,6 @@
         "disp": true,
         "width": "9",
         "collapse": false
-    },
-    {
-        "id": "721af69.d130208",
-        "type": "ui_tab",
-        "name": "Demo",
-        "icon": "dashboard"
-    },
-    {
-        "id": "4d8aa5d0.aa01ec",
-        "type": "ui_table",
-        "z": "4c878ae1.32bae4",
-        "group": "74c69428.3abbdc",
-        "name": "result_table",
-        "order": 0,
-        "width": "20",
-        "height": "20",
-        "columns": [
-            {
-                "field": "name",
-                "title": "Test-Name",
-                "width": "",
-                "align": "left",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "errors",
-                "title": "Errors",
-                "width": "",
-                "align": "left",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "last_error_ts",
-                "title": "Last Error At",
-                "width": "",
-                "align": "left",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "last_error",
-                "title": "Last Error",
-                "width": "",
-                "align": "left",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            }
-        ],
-        "outputs": 1,
-        "cts": true,
-        "x": 850,
-        "y": 380,
-        "wires": [
-            [
-                "49406610.c28f38",
-                "1e4eb64c.dc32aa"
-            ]
-        ]
     },
     {
         "id": "bc355f75.adb21",
@@ -325,7 +263,7 @@
         "type": "function",
         "z": "4c878ae1.32bae4",
         "name": "TableCache",
-        "func": "function idxOfName(table, name){\n    idx = 0\n    for (const row of table) {\n        if( row.name == name){\n            return idx;\n        }\n        idx++;\n    }\n    return -1;\n}\n\nfunction compare(a, b) {\n    if (a.name < b.name)\n        return -1;\n    if (a.name > b.name)\n        return 1;\n    return 0;\n}\n\ntable = flow.get(\"table\");\n\nif( 'payload' in msg){\n    \n    idx = idxOfName(table, msg.payload.name);\n    \n    if(idx == -1){\n        table.push(msg.payload);\n    }\n    else {\n        table[idx] = msg.payload;\n    }\n    \n    table.sort(compare);\n    \n    flow.set(\"table\", table);\n}\n\nmsg = {}\nmsg.payload = []\n// ui-table only refreshes correctly when an empty array is sent first\nnode.send(msg)\n\nmsg.payload = table\nreturn msg;",
+        "func": "function idxOfName(table, name){\n    idx = 0\n    for (const row of table) {\n        if( row.name == name){\n            return idx;\n        }\n        idx++;\n    }\n    return -1;\n}\n\nfunction compare(a, b) {\n    if (a.name < b.name)\n        return -1;\n    if (a.name > b.name)\n        return 1;\n    return 0;\n}\n\ntable = flow.get(\"table\");\n\nif('topic' in msg && msg.topic.endsWith(\"clear_table\")){\n    table = []\n}\nelse if( 'payload' in msg ){\n    \n    idx = idxOfName(table, msg.payload.name);\n    \n    if(idx == -1){\n        table.push(msg.payload);\n    }\n    else {\n        table[idx] = msg.payload;\n    }\n    \n    table.sort(compare);\n    \n    flow.set(\"table\", table);\n}\n\nmsg = {}\nmsg.payload = []\n// ui-table only refreshes correctly when an empty array is sent first\nnode.send(msg)\n\nmsg.payload = table\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ntable = [];\nflow.set(\"table\", table);",
@@ -387,34 +325,6 @@
         ]
     },
     {
-        "id": "828796a6.5e221",
-        "type": "ui_button",
-        "z": "4c878ae1.32bae4",
-        "name": "Clear Errors",
-        "group": "74c69428.3abbdc",
-        "order": 1,
-        "width": "2",
-        "height": "1",
-        "passthru": false,
-        "label": "Clear Errors",
-        "tooltip": "Clear all error counters",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "{}",
-        "payloadType": "json",
-        "topic": "robot-test/clear_error_counters",
-        "topicType": "str",
-        "x": 900,
-        "y": 120,
-        "wires": [
-            [
-                "ca54a754.c8c998",
-                "6b6ee69b.4fa018"
-            ]
-        ]
-    },
-    {
         "id": "ca54a754.c8c998",
         "type": "mqtt out",
         "z": "4c878ae1.32bae4",
@@ -460,6 +370,52 @@
         ]
     },
     {
+        "id": "f430eb76.6304c",
+        "type": "function",
+        "z": "4c878ae1.32bae4",
+        "name": "",
+        "func": "str = msg.payload\n\nmsg.payload = str.replace(/(?:\\r\\n|\\r|\\n)/g, '<br>');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1180,
+        "y": 440,
+        "wires": [
+            [
+                "c7850b38.fbfac8"
+            ]
+        ]
+    },
+    {
+        "id": "828796a6.5e221",
+        "type": "ui_button",
+        "z": "4c878ae1.32bae4",
+        "name": "Clear Errors",
+        "group": "74c69428.3abbdc",
+        "order": 1,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Clear Errors",
+        "tooltip": "Clear all error counters",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "topic": "robot-test/clear_error_counters",
+        "topicType": "str",
+        "x": 810,
+        "y": 40,
+        "wires": [
+            [
+                "ca54a754.c8c998"
+            ]
+        ]
+    },
+    {
         "id": "c7850b38.fbfac8",
         "type": "ui_template",
         "z": "4c878ae1.32bae4",
@@ -480,26 +436,127 @@
         ]
     },
     {
-        "id": "f430eb76.6304c",
-        "type": "function",
+        "id": "4d8aa5d0.aa01ec",
+        "type": "ui_table",
         "z": "4c878ae1.32bae4",
-        "name": "",
-        "func": "str = msg.payload\n\nmsg.payload = str.replace(/(?:\\r\\n|\\r|\\n)/g, '<br>');\nreturn msg;",
+        "group": "74c69428.3abbdc",
+        "name": "result_table",
+        "order": 0,
+        "width": "20",
+        "height": "20",
+        "columns": [
+            {
+                "field": "name",
+                "title": "Test-Name",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "errors",
+                "title": "Errors",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "last_error_ts",
+                "title": "Last Error At",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "last_error",
+                "title": "Last Error",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "status",
+                "title": "Status",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
         "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1180,
-        "y": 440,
+        "cts": true,
+        "x": 850,
+        "y": 380,
         "wires": [
             [
-                "c7850b38.fbfac8"
+                "49406610.c28f38",
+                "1e4eb64c.dc32aa"
             ]
         ]
     },
     {
-        "id": "6b6ee69b.4fa018",
+        "id": "6914720e.56a31c",
+        "type": "ui_button",
+        "z": "4c878ae1.32bae4",
+        "name": "Stop Tests",
+        "group": "74c69428.3abbdc",
+        "order": 1,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Stop All Tests",
+        "tooltip": "Stop all tests",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "topic": "robot-test/stop_test",
+        "topicType": "str",
+        "x": 810,
+        "y": 80,
+        "wires": [
+            [
+                "ca54a754.c8c998"
+            ]
+        ]
+    },
+    {
+        "id": "95e428f6.3dc94",
+        "type": "mqtt in",
+        "z": "4c878ae1.32bae4",
+        "name": "",
+        "topic": "robot-test/clear_table",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "b019dbf8.677588",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "x": 440,
+        "y": 500,
+        "wires": [
+            [
+                "6debd184.61566",
+                "5e876141.42a888"
+            ]
+        ]
+    },
+    {
+        "id": "5e876141.42a888",
         "type": "debug",
         "z": "4c878ae1.32bae4",
         "name": "",
@@ -507,11 +564,12 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1100,
-        "y": 80,
+        "x": 640,
+        "y": 500,
         "wires": []
     }
 ]
