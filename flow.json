@@ -10,7 +10,7 @@
         "id": "b019dbf8.677588",
         "type": "mqtt-broker",
         "name": "MQTT",
-        "broker": "mosquitto",
+        "broker": "172.17.0.1",
         "port": "1883",
         "clientid": "",
         "usetls": false,
