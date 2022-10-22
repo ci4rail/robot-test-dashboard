@@ -273,7 +273,8 @@
         "y": 380,
         "wires": [
             [
-                "4d8aa5d0.aa01ec"
+                "4d8aa5d0.aa01ec",
+                "8d075aa8.5878e"
             ]
         ]
     },
@@ -456,9 +457,19 @@
                 }
             },
             {
+                "field": "success_cnt",
+                "title": "# Success",
+                "width": "8%",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
                 "field": "errors",
-                "title": "Errors",
-                "width": "",
+                "title": "# Errors",
+                "width": "8%",
                 "align": "left",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -468,7 +479,7 @@
             {
                 "field": "last_error_ts",
                 "title": "Last Error At",
-                "width": "",
+                "width": "15%",
                 "align": "left",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -478,7 +489,7 @@
             {
                 "field": "last_error",
                 "title": "Last Error",
-                "width": "",
+                "width": "20%",
                 "align": "left",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -488,7 +499,7 @@
             {
                 "field": "status",
                 "title": "Status",
-                "width": "",
+                "width": "8%",
                 "align": "left",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -570,6 +581,22 @@
         "statusType": "auto",
         "x": 640,
         "y": 500,
+        "wires": []
+    },
+    {
+        "id": "8d075aa8.5878e",
+        "type": "debug",
+        "z": "4c878ae1.32bae4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 300,
         "wires": []
     }
 ]
