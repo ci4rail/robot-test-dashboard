@@ -263,7 +263,7 @@
         "type": "function",
         "z": "4c878ae1.32bae4",
         "name": "TableCache",
-        "func": "function idxOfName(table, name){\n    idx = 0\n    for (const row of table) {\n        if( row.name == name){\n            return idx;\n        }\n        idx++;\n    }\n    return -1;\n}\n\nfunction compare(a, b) {\n    if (a.name < b.name)\n        return -1;\n    if (a.name > b.name)\n        return 1;\n    return 0;\n}\n\ntable = flow.get(\"table\");\n\nif('topic' in msg && msg.topic.endsWith(\"clear_table\")){\n    table = []\n}\nelse if( 'payload' in msg ){\n    \n    idx = idxOfName(table, msg.payload.name);\n    \n    if(idx == -1){\n        table.push(msg.payload);\n    }\n    else {\n        table[idx] = msg.payload;\n    }\n    \n    table.sort(compare);\n    \n    flow.set(\"table\", table);\n}\n\nmsg = {}\nmsg.payload = []\n// ui-table only refreshes correctly when an empty array is sent first\nnode.send(msg)\n\nmsg.payload = table\nreturn msg;",
+        "func": "function idxOfName(table, name){\n    idx = 0\n    for (const row of table) {\n        if( row.name == name){\n            return idx;\n        }\n        idx++;\n    }\n    return -1;\n}\n\nfunction compare(a, b) {\n    if (a.name < b.name)\n        return -1;\n    if (a.name > b.name)\n        return 1;\n    return 0;\n}\n\ntable = flow.get(\"table\");\n\nif('topic' in msg && msg.topic.endsWith(\"clear_table\")){\n    table = []\n}\nelse if( 'payload' in msg ){\n    \n    idx = idxOfName(table, msg.payload.name);\n    \n    if(idx == -1){\n        table.push(msg.payload);\n    }\n    else {\n        if(msg.payload.errors > 0){\n            msg.payload.errors = \"<font color='red'><b>\" + msg.payload.errors + \"</b></font>\";            \n        }\n        if(msg.payload.status == \"Stopped\"){\n            msg.payload.status = \"<font color='yellow'>\" + msg.payload.status + \"</font>\";\n        }\n        table[idx] = msg.payload;\n    }\n    \n    table.sort(compare);\n    \n    flow.set(\"table\", table);\n}\n\nmsg = {}\nmsg.payload = []\n// ui-table only refreshes correctly when an empty array is sent first\nnode.send(msg)\n\nmsg.payload = table\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ntable = [];\nflow.set(\"table\", table);",
@@ -273,8 +273,7 @@
         "y": 380,
         "wires": [
             [
-                "4d8aa5d0.aa01ec",
-                "8d075aa8.5878e"
+                "4d8aa5d0.aa01ec"
             ]
         ]
     },
@@ -471,7 +470,7 @@
                 "title": "# Errors",
                 "width": "8%",
                 "align": "left",
-                "formatter": "plaintext",
+                "formatter": "html",
                 "formatterParams": {
                     "target": "_blank"
                 }
@@ -501,7 +500,7 @@
                 "title": "Status",
                 "width": "8%",
                 "align": "left",
-                "formatter": "plaintext",
+                "formatter": "html",
                 "formatterParams": {
                     "target": "_blank"
                 }
@@ -581,22 +580,6 @@
         "statusType": "auto",
         "x": 640,
         "y": 500,
-        "wires": []
-    },
-    {
-        "id": "8d075aa8.5878e",
-        "type": "debug",
-        "z": "4c878ae1.32bae4",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 860,
-        "y": 300,
         "wires": []
     }
 ]
